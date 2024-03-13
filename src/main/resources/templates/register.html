@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/RegisterPage/style.css">
+
+    <link rel="icon" href="/RegisterPage/edit.png">
+
+    <title>User Register</title>
+</head>
+<body>
+<div class="container">
+    <header>User Registration</header>
+
+    <form action="/register" method="POST">
+        <div class="form first">
+            <div class="details ID">
+                <span class="title">Account Details</span>
+
+                <div class="fields">
+                    <div class="input-field">
+                        <label>Username</label>
+                        <input name="username" type="text" placeholder="Enter your username" th:value="${session.username}">
+                    </div>
+
+                    <div class="input-field">
+                        <label>Password</label>
+                        <input name="password" type="password" placeholder="Enter your password">
+                    </div>
+
+                    <div class="input-field">
+                        <label>Verify password</label>
+                        <input name="verifyPassword" type="password" placeholder="Verify your password">
+                    </div>
+                </div>
+            </div>
+
+            <div class="details personal">
+                <span class="title">Personal Details</span>
+
+                <div class="fields">
+                    <div class="input-field">
+                        <label>Full Name</label>
+                        <input name="name" type="text" placeholder="Enter your name" th:value="${session.name}">
+                    </div>
+
+                    <div class="input-field">
+                        <label>Date of Birth</label>
+                        <input name="dob" type="date" placeholder="Enter birth date" th:value="${session.dob}">
+                    </div>
+
+                    <div class="input-field">
+                        <label>Email</label>
+                        <input name="email" type="text" placeholder="Enter your email" th:value="${session.email}">
+                    </div>
+
+                    <div class="input-field">
+                        <label>Mobile Number</label>
+                        <input name="phone" type="number" placeholder="Enter mobile number" th:value="${session.phone}">
+                    </div>
+
+                    <div class="input-field">
+                        <label>Gender</label>
+                        <select name="sex">
+                            <option disabled selected>Select gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Others</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label>Address</label>
+                        <input name="address" type="text" placeholder="Enter your address" th:value="${session.address}">
+                    </div>
+                </div>
+            </div>
+
+            <a href="/home" style="text-decoration: none; display: block; max-width: 200px">
+                <button type="button" class="nextBtn" style="background-color: rgb(128,128,128); text-decoration: none; margin: 10px 0;">
+                    Back
+                </button>
+            </a>
+
+            <button class="nextBtn" style="margin: 15px 0;">
+                <input style="background: none; color: white; border: none" type="submit" value="Register">
+            </button>
+
+            <div class="input-field">
+                <label style="color: red" th:text="${message}"></label>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--<script src="RegisterPage/script.js"></script>-->
+</body>
+</html>

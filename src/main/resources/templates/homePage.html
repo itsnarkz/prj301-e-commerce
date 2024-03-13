@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
+
+    <title>Shopping Application</title>
+
+    <link rel="shortcut icon" href="/HomePage/assets/img/shopee.svg" type="image/x-icon">
+    <link rel="stylesheet" href="/HomePage/assets/css/normalize.min.css">
+    <link rel="stylesheet" href="/HomePage/assets/css/base.css">
+    <link rel="stylesheet" href="/HomePage/assets/css/main.css">
+    <link rel="stylesheet" href="/HomePage/assets/css/grid.css">
+    <link rel="stylesheet" href="/HomePage/assets/css/responsive.css">
+    <link rel="stylesheet" href="/HomePage/assets/font/fontawesome-free-6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="/HomePage/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap&subset=vietnamese"
+          rel="stylesheet">
+</head>
+
+<body>
+<div class="app">
+    <!-- Header -->
+    <header class="header">
+        <div class="grid wide">
+            <nav class="header__navbar hide-on-mobile-tablet">
+                <ul class="header__navbar-list">
+                    <li class="header__navbar-item">
+                        <a href="/changePassword" class="header__navbar-item-link">
+                            <i class="header__navbar-icon fa fa-key"></i>
+                            Change password
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="header__navbar-list">
+
+                    <li class="header__navbar-item header__navbar-user">
+                        <img src="img/user.jpg" alt=""
+                             class="header__navbar-user-img">
+                        <a style="text-decoration: none; color: white" class="header__navbar-user-name" th:text="${session.user.name}" href="/update"></a>
+
+                    </li>
+
+                    <li class="header__navbar-item">
+                        <a href="/logout" class="header__navbar-item-link">
+                            <i class="header__navbar-icon fa fa-sign-out"></i>
+                            Logout
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <!-- Header with search -->
+            <div class="header-with-search">
+                <label for="mobile-search-checkbox" class="header__mobile-search">
+                    <i class="header__mobile-search-icon fa-solid fa-magnifying-glass"></i>
+                </label>
+
+                <div class="header__logo hide-on-tablet">
+                    <a href="./" class="header__logo-link">
+                        <img style="width: 75px" src="HomePage/cart.png" alt="">
+                    </a>
+                </div>
+
+                <input type="checkbox" hidden id="mobile-search-checkbox" class="mobile-search-checkbox">
+
+                <form class="header__search" action="/search" method="GET">
+                    <div class="header__search-input-wrap">
+                        <!-- Header search input -->
+                        <input onkeyup="showResult(this.value)" type="text" name="q" class="header__search-input" placeholder="Search for product...">
+                        <div id="livesearch" style="display: flex; flex-direction: column; background-color: #A5ACB2"></div>
+                    </div>
+
+                    <input type="submit" class="header__search-btn" value="Search"  style="color: white; font-size: small">
+
+                </form>
+
+                <!-- Cart layout -->
+                <div class="header__cart">
+                    <div class="header__cart-wrap">
+                        <a th:href="@{/cart}"><i class="header__cart-icon fa-solid fa-cart-shopping"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Banner section -->
+    <div class="app__banner">
+        <div class="grid wide">
+            <div class="row sm-gutter app__banner-content">
+                <div class="col l-8 m-12 c-12">
+                    <div class="full-home-banners__main">
+                        <div class="full-home-banners__main-inner">
+                            <a href="" class="full-home-banners__main-item active">
+                                <img src="https://cf.shopee.vn/file/8da7a277ab0b311b9152070ac7e2c217_xxhdpi" alt="">
+                            </a>
+                            <a href="" class="full-home-banners__main-item">
+                                <img src="https://cf.shopee.vn/file/cbd678911fdabb577ec97dcb7efd7141_xxhdpi" alt="">
+                            </a>
+                            <a href="" class="full-home-banners__main-item">
+                                <img src="https://cf.shopee.vn/file/6da82e01627122bf22b8bcc014fc90af_xxhdpi" alt="">
+                            </a>
+                            <a href="" class="full-home-banners__main-item">
+                                <img src="https://cf.shopee.vn/file/a2fbff9877089bcc52674d5a4215d9c7_xxhdpi" alt="">
+                            </a>
+                        </div>
+                        <div class="full-home-banners__main-controls">
+                            <i class="carosel-btn-left fa-solid fa-angle-left"></i>
+                            <i class="carosel-btn-right fa-solid fa-angle-right"></i>
+                        </div>
+                        <div class="full-home-banners__main-indicators">
+                            <div class="full-home-bannders__main-dot active"></div>
+                            <div class="full-home-bannders__main-dot"></div>
+                            <div class="full-home-bannders__main-dot"></div>
+                            <div class="full-home-bannders__main-dot"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l-4 m-12">
+                    <div class="row sm-gutter-tablet">
+                        <a href="#" class="col l-12 m-6 full-home-banners__right-link">
+                            <div class="full-home-banners__right-img"
+                                 style="background-image: url('https://cf.shopee.vn/file/7838079195aa34290179f39d1b496d69_xhdpi')">
+                            </div>
+                        </a>
+                        <a href="#" class="col l-12 m-6 full-home-banners__right-link">
+                            <div class="full-home-banners__right-img"
+                                 style="background-image: url('https://cf.shopee.vn/file/735586d941db9bb7dfe1afcde9179d15_xhdpi')">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container -->
+    <div class="app__container">
+        <div class="grid wide">
+            <div class="row sm-gutter app_content">
+                <!-- Category left bar -->
+                <div class="col l-2 m-0 c-0">
+                    <nav class="category">
+                        <h3 class="category__heading" style="color: #ee4d2d; font-weight: bold">Categories</h3>
+
+                        <ul class="category-list">
+                            <li class="category-item">
+                                <a href="/home" class="category-item__link">All</a>
+                            </li>
+                        </ul>
+
+                        <ul class="category-list" th:each="c : ${categoryList}">
+                            <li class="category-item">
+                                <a th:href="@{/category(categoryId=${c.id})}" class="category-item__link" th:text="${c.name}" th:style="${category == c.id ? 'color:#ee4d2d' : ''}"></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Product -->
+                <div class="col l-10 m-12 c-12">
+
+                    <!-- Product list -->
+                    <div class="home-product">
+                        <div class="row sm-gutter">
+
+                            <!-- Product item -->
+                            <div class="col l-2-4 m-4 c-6" th:each="i : ${itemList}">
+                                <div class="home-product-item">
+                                    <div class="home-product-item__img">
+                                        <img src="/img/download.jpg" alt="hello">
+<!--                                        th:src="@{img/{photo}(photo=${i.photo})}"-->
+                                    </div>
+                                    <h4 class="home-product-item__name" th:text="${i.name}">
+
+                                    </h4>
+                                    <div class="home-product-item__price" >
+                                        <span class="home-product-item__price-current" th:text="${i.price}"></span>
+                                    </div>
+
+                                    <div class="home-product-item__origin">
+                                        <span class="home-product-item__brand" th:text="${i.seller}"></span>
+                                        <button type="button" th:data-id="${i.id}" th:onclick="addItem(this.getAttribute('data-id'))" style="text-decoration: none; color: #ee4d2d" class="home-product-item__origin-name">Add</button>
+                                    </div>
+                                    <div class="home-product-item__favourite">
+                                        <i class="fa-solid fa-check"></i>
+                                        <span>Yêu thích</span>
+                                    </div>
+                                    <div class="home-product-item__sale-off">
+                                        <span class="home-product-item__sale-off-percent">10%</span>
+                                        <span class="home-product-item__sale-off-label">GIẢM</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+
+            <div class="grid wide">
+                <p class="footer_text">© 2024 - itsnarkz</p>
+            </div>
+
+    </footer>
+</div>
+<script src="/HomePage/assets/js/main.js"></script>
+<script src="/HomePage/index.js"></script>
+</body>
+
+</html>

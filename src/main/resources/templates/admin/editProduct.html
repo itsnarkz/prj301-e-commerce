@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/RegisterPage/style.css">
+
+    <link rel="icon" href="/Admin/admin.png">
+
+    <title>Edit Product</title>
+</head>
+
+<body>
+<div class="container">
+    <header th:text="'Edit product ' + ${p.name}"></header>
+
+    <form action="/admin/editProduct" method="POST">
+        <div class="form first">
+            <div class="details personal">
+                <span class="title">Product Details</span>
+
+                <input name="id" type="hidden" th:value="${p.id}">
+
+                <div class="fields">
+                    <div class="input-field">
+                        <label>Product Name</label>
+                        <input name="name" type="text" placeholder="Your product name" th:value="${p.name}">
+                    </div>
+
+                    <div class="input-field">
+                        <label>Seller</label>
+                        <input name="seller" type="text" placeholder="Your product seller" th:value="${p.seller}">
+                    </div>
+
+                    <div class="input-field">
+                        <label>Description</label>
+                        <input name="description" type="text" placeholder="Product description" th:value="${p.description}">
+                    </div>
+
+                    <div class="input-field">
+                        <label>Category</label>
+                        <select name="categoryId" th:value="0">
+                            <option value="0">Select category</option>
+                            <option th:each="c : ${categoryList}" th:value="${c.id}" th:text="${c.name}"></option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label>Price</label>
+                        <input name="price" type="number" placeholder="Product price" th:value="${p.price}">
+                    </div>
+                </div>
+            </div>
+
+            <a href="/admin" style="text-decoration: none; display: block; max-width: 200px">
+                <button type="button" class="nextBtn" style="background-color: rgb(128,128,128); text-decoration: none">
+                    Back
+                </button>
+            </a>
+
+            <button class="nextBtn">
+                <input style="background: none; color: white; border: none" type="submit" value="Update">
+            </button>
+
+            <div class="input-field">
+                <label style="color: red" th:text="${error}"></label>
+                <label style="color: green" th:text="${success}"></label>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<!--<script src="RegisterPage/script.js"></script>-->
+</body>
+</html>
